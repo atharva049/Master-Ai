@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atharva | AI Shinobi Universe</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#0b0f1a;
+color:white;
+overflow-x:hidden;
+}
+
+.hero{
+text-align:center;
+padding:40px;
+}
+
+.hero h1{
+font-size:42px;
+color:#00f2ff;
+text-shadow:0 0 20px #00f2ff;
+}
+
+.hero p{
+opacity:0.8;
+margin-top:10px;
+}
+
+.progress-container{
+width:80%;
+margin:20px auto;
+background:#111827;
+border-radius:20px;
+}
+
+.progress-bar{
+height:25px;
+width:0%;
+border-radius:20px;
+background:linear-gradient(90deg,#00f2ff,#0077ff);
+text-align:center;
+line-height:25px;
+font-size:14px;
+transition:0.4s;
+box-shadow:0 0 20px #00f2ff;
+}
+
+.rank{
+text-align:center;
+margin-top:10px;
+font-weight:bold;
+color:#00f2ff;
+}
+
+.container{
+width:85%;
+margin:auto;
+padding-bottom:50px;
+}
+
+.card{
+background:#111827;
+margin:20px 0;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,242,255,0.2);
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.02);
+box-shadow:0 0 35px rgba(0,242,255,0.6);
+}
+
+.character{
+font-size:50px;
+margin-bottom:10px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{ text-shadow:0 0 10px #00f2ff; }
+to{ text-shadow:0 0 25px #00f2ff; }
+}
+
+button{
+margin:8px 5px;
+padding:8px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:#0077ff;
+color:white;
+transition:0.3s;
+}
+
+button:hover{
+background:#00f2ff;
+color:black;
+}
+
+footer{
+text-align:center;
+padding:30px;
+opacity:0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+<h1>⚡ AI Shinobi Universe ⚡</h1>
+<p>Built by Atharva Hgedekar | Become the AI Hokage 🚀</p>
+</div>
+
+<div class="progress-container">
+<div class="progress-bar" id="progressBar">0% XP</div>
+</div>
+
+<div class="rank" id="rankDisplay">Rank: Genin</div>
+
+<div class="container">
+
+<!-- Linear Algebra -->
+<div class="card">
+<div class="character">🧠</div>
+<h2>Linear Algebra Sensei</h2>
+<p>Vectors, Matrices, Eigenvalues, SVD</p>
+<button onclick="completeTask(0); window.open('https://www.youtube.com/watch?v=kjBOesZCoqc')">Train (Video)</button>
+<button onclick="completeTask(1); window.open('https://www.khanacademy.org/math/linear-algebra')">Practice</button>
+</div>
+
+<!-- Statistics -->
+<div class="card">
+<div class="character">📊</div>
+<h2>Statistics Strategist</h2>
+<p>CLT, Bayesian, MLE, Markov Chains</p>
+<button onclick="completeTask(2); window.open('https://www.youtube.com/watch?v=xxpc-HPKN28')">Train (Video)</button>
+<button onclick="completeTask(3); window.open('https://www.khanacademy.org/math/statistics-probability')">Practice</button>
+</div>
+
+<!-- Machine Learning -->
+<div class="card">
+<div class="character">🤖</div>
+<h2>ML Warrior</h2>
+<p>Regression, Neural Nets, Transformers</p>
+<button onclick="completeTask(4); window.open('https://www.youtube.com/watch?v=GwIo3gDZCVQ')">Train (Video)</button>
+<button onclick="completeTask(5); window.open('https://scikit-learn.org/stable/')">Practice</button>
+</div>
+
+<!-- Algorithmic Trading -->
+<div class="card">
+<div class="character">📈</div>
+<h2>Quant Ninja</h2>
+<p>CAPM, Black-Scholes, Monte Carlo</p>
+<button onclick="completeTask(6); window.open('https://www.youtube.com/watch?v=9Y3yaoi9rUQ')">Train (Video)</button>
+<button onclick="completeTask(7); window.open('https://www.investopedia.com/')">Practice</button>
+</div>
+
+</div>
+
+<footer>
+🔥 Train Daily. Level Up. Become Elite. 🔥
+</footer>
+
+<script>
+let totalTasks = 8;
+
+function completeTask(index){
+if(!localStorage.getItem("task"+index)){
+localStorage.setItem("task"+index,true);
+updateProgress();
+}
+}
+
+function updateProgress(){
+let completed=0;
+for(let i=0;i<totalTasks;i++){
+if(localStorage.getItem("task"+i)){
+completed++;
+}
+}
+
+let percent=Math.round((completed/totalTasks)*100);
+let bar=document.getElementById("progressBar");
+bar.style.width=percent+"%";
+bar.innerHTML=percent+"% XP";
+
+let rank="Genin";
+if(percent>=25) rank="Chunin";
+if(percent>=50) rank="Jonin";
+if(percent>=75) rank="Elite Jonin";
+if(percent==100) rank="Hokage 🏆";
+
+document.getElementById("rankDisplay").innerText="Rank: "+rank;
+}
+
+window.onload=function(){
+updateProgress();
+}
+</script>
+
+</body>
+</html>
